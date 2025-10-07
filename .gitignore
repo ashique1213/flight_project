@@ -1,0 +1,109 @@
+# =========================================
+# Django
+# =========================================
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+staticfiles/
+static_root/
+.env
+.env.*
+*.env
+
+# If using local settings
+local_settings.py
+
+# =========================================
+# Python
+# =========================================
+*.py[cod]
+*$py.class
+__pycache__/
+*.so
+
+# =========================================
+# Virtual Environment
+# =========================================
+venv/
+env/
+ENV/
+.venv/
+.env.bak/
+
+# =========================================
+# IDE / Editor Specific
+# =========================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# =========================================
+# macOS / Windows
+# =========================================
+.DS_Store
+Thumbs.db
+
+# =========================================
+# Docker
+# =========================================
+docker-compose.override.yml
+*.pid
+*.seed
+*.bak
+*.swp
+
+# =========================================
+# Byte-compiled / cache
+# =========================================
+*.py[cod]
+*$py.class
+
+# =========================================
+# Unit test / coverage reports
+# =========================================
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*,cover
+.hypothesis/
+.pytest_cache/
+
+# =========================================
+# MyPy / Pyre / Pyright
+# =========================================
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
+# =========================================
+# Django Migrations (optional for new apps)
+# Uncomment if you don’t want to push migrations yet
+# =========================================
+# */migrations/
+# !*/migrations/__init__.py
+
+# =========================================
+# JetBrains
+# =========================================
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# =========================================
+# Jupyter Notebooks
+# =========================================
+.ipynb_checkpoints/
+
+# =========================================
+# Logs
+# =========================================
+logs/
+*.log
