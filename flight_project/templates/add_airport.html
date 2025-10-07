@@ -1,0 +1,16 @@
+<h2>Add Airport</h2>
+<form method="POST">{% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Add Airport</button>
+</form>
+
+<h3>Existing Airports</h3>
+<ul>
+  {% for a in airports %}
+    <li>{{ a.code }} - {{ a.position }}</li>
+  {% empty %}
+    <li>No airports yet.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'add_route' %}">Go to Add Route →</a>

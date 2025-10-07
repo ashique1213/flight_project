@@ -5,7 +5,7 @@ class Airport(models.Model):
     position = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.code
+        return f"{self.code} ({self.position})"
 
 
 class Route(models.Model):
