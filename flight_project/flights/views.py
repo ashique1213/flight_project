@@ -23,30 +23,23 @@ def add_route(request):
 
 # Find Nth Left or Right Node
 def find_nth_node(request):
+    form = SearchNthNodeForm(request.GET or None)
     result = None
-    form = SearchNthNodeForm(request.POST or None)
     if form.is_valid():
-        start = form.cleaned_data['start_airport']
+        route_id = form.cleaned_data['route_id']
         direction = form.cleaned_data['direction']
         n = form.cleaned_data['n']
 
-        if direction == 'right':
-            for i in range(n):
-                route = Route.objects.filter(source=start).first()
-                if not route:
-                    result = "No further route found."
-                    break
-                start = route.destination
+        routes = list(Route.objects.order_by('position'))
+        current_index = next((i for i, r in enumerate(routes) if r.id == route_id), None)
+
+        if current_index is not None:
+            target_index = current_index - n if direction == 'left' else current_index + n
+            if 0 <= target_index < len(routes):
+                result = routes[target_index]
             else:
-                result = f"{n}th Right Node: {start.code}"
+                result = "No node found in that direction."
         else:
-            for i in range(n):
-                route = Route.objects.filter(destination=start).first()
-                if not route:
-                    result = "No further route found."
-                    break
-                start = route.source
-            else:
-                result = f"{n}th Left Node: {start.code}"
+            result = "Route not found."
 
     return render(request, 'nth_node.html', {'form': form, 'result': result})

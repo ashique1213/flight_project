@@ -1,14 +1,15 @@
 <h2>Add Airport Route</h2>
-<form method="POST">{% csrf_token %}
+<form method="POST">
+  {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Add</button>
+  <button type="submit">Add Route</button>
 </form>
 
-<h3>Existing Routes</h3>
+<h3>All Routes</h3>
 <ul>
-  {% for r in routes %}
-    <li>{{ r.source }} ➜ {{ r.destination }} ({{ r.duration }} mins)</li>
+  {% for route in routes %}
+  <li>{{ route.id }} - {{ route }}</li>
   {% empty %}
-    <li>No routes yet.</li>
+  <li>No routes available yet.</li>
   {% endfor %}
 </ul>
