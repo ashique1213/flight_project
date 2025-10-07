@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Airport, Route
-from .forms import AirportForm, RouteForm,SearchNthNodeForm
+from .forms import AirportForm, RouteForm,SearchNthNodeForm,ShortestRouteForm
 
 # Add Airport
 def add_airport(request):
@@ -49,3 +49,16 @@ def find_nth_node(request):
 def longest_route_view(request):
     longest = Route.objects.order_by('-duration').first()
     return render(request, 'longest_route.html', {'longest': longest})
+
+# Find Shortest Route between Two Airports
+def shortest_route_view(request):
+    form = ShortestRouteForm(request.GET or None)
+    result = None
+
+    if form.is_valid():
+        src = form.cleaned_data['source']
+        dest = form.cleaned_data['destination']
+        route = Route.objects.filter(source=src, destination=dest).order_by('duration').first()
+        result = route if route else "No route found between given airports."
+
+    return render(request, 'shortest_route.html', {'form': form, 'result': result})

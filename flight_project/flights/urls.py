@@ -6,5 +6,6 @@ urlpatterns = [
     path('add-route/', views.add_route, name='add_route'),
     path('nth-node/', views.find_nth_node, name='nth_node'),
     path('longest/', views.longest_route_view, name='longest_route'),
+    path('shortest/', views.shortest_route_view, name='shortest_route'),
 
 ]
