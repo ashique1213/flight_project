@@ -12,7 +12,7 @@ class RouteForm(forms.ModelForm):
         fields = ['source', 'destination', 'position', 'duration']
 
 class SearchNthNodeForm(forms.Form):
-    route_id = forms.IntegerField(label="Enter Route ID")
+    start_airport = forms.ModelChoiceField(queryset=Airport.objects.all(),label="Select Starting Airport(Node)")
     direction = forms.ChoiceField(choices=[('left', 'Left'), ('right', 'Right')])
     n = forms.IntegerField(min_value=1, label="Enter N (step count)")
    

@@ -26,21 +26,23 @@ def find_nth_node(request):
     form = SearchNthNodeForm(request.GET or None)
     result = None
     if form.is_valid():
-        route_id = form.cleaned_data['route_id']
+        start_airport = form.cleaned_data['start_airport']
         direction = form.cleaned_data['direction']
         n = form.cleaned_data['n']
 
+        # Get all routes in order
         routes = list(Route.objects.order_by('position'))
-        current_index = next((i for i, r in enumerate(routes) if r.id == route_id), None)
+        # Find the route that starts from this airport
+        current_index = next((i for i, r in enumerate(routes) if r.source == start_airport), None)
 
         if current_index is not None:
             target_index = current_index - n if direction == 'left' else current_index + n
             if 0 <= target_index < len(routes):
                 result = routes[target_index]
             else:
-                result = "No node found in that direction."
+                result = "No route found in that direction."
         else:
-            result = "Route not found."
+            result = "Starting airport(node) not found in any route."
 
     return render(request, 'nth_node.html', {'form': form, 'result': result})
 
