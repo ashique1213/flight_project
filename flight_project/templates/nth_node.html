@@ -1,0 +1,9 @@
+<h2>Find Nth Left or Right Node</h2>
+<form method="POST">{% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Search</button>
+</form>
+
+{% if result %}
+  <h3>Result: {{ result }}</h3>
+{% endif %}
