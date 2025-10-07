@@ -43,3 +43,9 @@ def find_nth_node(request):
             result = "Route not found."
 
     return render(request, 'nth_node.html', {'form': form, 'result': result})
+
+
+# Find Longest Route (based on duration)
+def longest_route_view(request):
+    longest = Route.objects.order_by('-duration').first()
+    return render(request, 'longest_route.html', {'longest': longest})
