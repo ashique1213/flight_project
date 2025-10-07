@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .models import Airport, Route
 from .forms import AirportForm, RouteForm,SearchNthNodeForm,ShortestRouteForm
 
+def home(request):
+    return render(request, 'home.html')
+
 # Add Airport
 def add_airport(request):
     form = AirportForm(request.POST or None)
